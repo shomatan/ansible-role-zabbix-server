@@ -1,0 +1,32 @@
+# {{ ansible_managed }}
+
+server {
+
+  server_name _;
+  root        /var/www;
+  index       index.html index.php;
+
+  access_log  /var/log/nginx/access-zabbix.log;
+  error_log   /var/log/nginx/error-zabbix.log error;
+
+{% if zabbix_server_web_allow_hosts | length > 0 %}
+{% for item in zabbix_server_web_allow_hosts %}
+  allow {{ item }};
+{% endfor %}
+  deny all;
+{% endif %}
+
+  location /zabbix {
+    index index.php;
+  }
+
+  location ~ \.php {
+    fastcgi_pass    unix:/var/run/php-fpm/php-fpm.sock;
+    fastcgi_index   index.php;
+    fastcgi_param   SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    fastcgi_param   PHP_VALUE  "post_max_size=16M
+                                max_execution_time=300
+                                max_input_time=300";
+    include fastcgi_params;
+  }
+}
