@@ -1,1 +1,19 @@
 ---
+# install
+- name: Enable zabbix repo.
+  template:
+    src: zabbix.repo.j2
+    dest: /etc/yum.repos.d/zabbix.repo
+    owner: root
+    group: root
+    mode: 00644
+
+- name: Ensure zabbix utils are installed.
+  yum:
+    name: "{{ item }}"
+    state: installed
+    enablerepo: epel
+  with_items:
+    - iksemel
+    - fping
+

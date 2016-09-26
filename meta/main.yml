@@ -1,1 +1,5 @@
 ---
+dependencies:
+  - { role: nginx }
+  - { role: php }
+  - { role: mysql }
