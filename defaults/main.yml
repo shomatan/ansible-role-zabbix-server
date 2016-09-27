@@ -1,5 +1,5 @@
 ---
-zabbix_server_version: "3.0"
+zabbix_server_version: "3.2"
 zabbix_server_web_allow_hosts: []
 
 zabbix_server_ListenPort: 10051
