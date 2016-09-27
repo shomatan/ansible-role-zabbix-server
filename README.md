@@ -1,5 +1,5 @@
 # ansible-zabbix-server
-Installs and configure Zabbix server.
+Installs and configure Zabbix server.
 
 ### Dependencies
 None.
