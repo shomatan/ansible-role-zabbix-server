@@ -1,7 +1,8 @@
 ---
-zabbix_server_version: 3.0
+zabbix_server_version: "3.0"
 zabbix_server_web_allow_hosts: []
 
+zabbix_server_ListenPort: 10051
 zabbix_server_db_host: localhost
 zabbix_server_db_name: zabbix
 zabbix_server_db_user: zabbix
