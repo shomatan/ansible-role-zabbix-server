@@ -55,7 +55,7 @@
     owner: "{{ nginx_user }}"
     group: "{{ nginx_user }}"
     mode: 00755
-    recurse: true
+  changed_when: False
 
 - name: Link to nginx directory.
   file:
