@@ -11,3 +11,7 @@ zabbix_server_db_user: zabbix
 zabbix_server_db_pass: zabbix
 
 zabbix_server_AlertScriptsPath: /usr/lib/zabbix/alertscripts
+
+# slack
+zabbix_server_slack_url: ""
+zabbix_server_slack_username: ""
