@@ -9,3 +9,5 @@ zabbix_server_db_host: localhost
 zabbix_server_db_name: zabbix
 zabbix_server_db_user: zabbix
 zabbix_server_db_pass: zabbix
+
+zabbix_server_AlertScriptsPath: /usr/lib/zabbix/alertscripts
