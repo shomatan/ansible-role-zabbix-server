@@ -86,3 +86,7 @@
 # service
 - name: Ensure zabbix-server is started and enabled to start at boot.
   service: name=zabbix-server state=started enabled=yes
+
+# notify scripts
+- name: Copy slack notification script in place.
+  template: src=alart_slack.sh.j2 dest={{ zabbix_server_AlertScriptsPath }}/slack.sh mode=00755
