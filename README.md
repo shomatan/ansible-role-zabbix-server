@@ -20,10 +20,13 @@ None.
 None.
 
 ## Example playbook
++ [firewalld](https://github.com/shomatan/ansible-firewalld.git)
 
 ```yaml
 - hosts: all
   roles:
+    - { role: firewalld }
     - { role: zabbix-server }
-
+  tasks:  
+    - firewalld: service=http permanent=true state=enabled immediate=true
 ```
