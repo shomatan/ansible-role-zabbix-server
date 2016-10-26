@@ -15,3 +15,15 @@ None.
 |zabbix_server_db_name|String|Database name.|zabbix|
 |zabbix_server_db_user|String|Database user.|zabbix|
 |zabbix_server_db_pass|String|Database password.|zabbix|
+
+## Dependencies
+None.
+
+## Example playbook
+
+```yaml
+- hosts: all
+  roles:
+    - { role: zabbix-server }
+
+```
