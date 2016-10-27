@@ -1,7 +1,7 @@
 # ansible-zabbix-server
 Installs and configure Zabbix server.
 
-### Dependencies
+### Requirements
 None.
 
 ### Role variables
