@@ -17,7 +17,8 @@ None.
 |zabbix_server_db_pass|String|Database password.|zabbix|
 
 ## Dependencies
-None.
++ [php](https://github.com/shomatan/ansible-php.git)
++ [mysql](https://github.com/shomatan/ansible-mysql.git)
 
 ## Example playbook
 + [firewalld](https://github.com/shomatan/ansible-firewalld.git)
