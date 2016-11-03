@@ -17,7 +17,7 @@ subject="$2"
 
 # Change message emoji depending on the subject - smile (RECOVERY), frowning (PROBLEM), or ghost (for everything else)
 recoversub='^RECOVER(Y|ED)?$'
-if [[ "$subject" == 'OK' ]]; then
+if [ "$subject" == 'OK' ]; then
 	emoji=':smile:'
 elif [ "$subject" == 'PROBLEM' ]; then
 	emoji=':frowning:'
