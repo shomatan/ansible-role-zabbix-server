@@ -15,6 +15,8 @@ None.
 |zabbix_server_db_name|String|Database name.|zabbix|
 |zabbix_server_db_user|String|Database user.|zabbix|
 |zabbix_server_db_pass|String|Database password.|zabbix|
+|zabbix_server_slack_url|String|||
+|zabbix_server_slack_username|String|||
 
 ## Dependencies
 + [php](https://github.com/shomatan/ansible-php.git)
@@ -28,6 +30,9 @@ None.
   roles:
     - { role: firewalld }
     - { role: zabbix-server }
+  vars:
+    zabbix_server_slack_url: "https://hooks.slack.com/services/xxxxx/yyyyy/zzzzz"
+    zabbix_server_slack_username: "notify-user"    
   tasks:  
     - firewalld: service=http permanent=true state=enabled immediate=true
 ```
