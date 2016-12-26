@@ -1,27 +1,16 @@
 ---
 # install
 - name: Enable zabbix repo.
-  template:
-    src: zabbix.repo.j2
-    dest: /etc/yum.repos.d/zabbix.repo
-    owner: root
-    group: root
-    mode: 00644
+  template: src=zabbix.repo.j2 dest=/etc/yum.repos.d/zabbix.repo
 
 - name: Ensure zabbix utils are installed.
-  yum:
-    name: "{{ item }}"
-    state: installed
-    enablerepo: epel
+  yum: name={{ item }} enablerepo=epel
   with_items:
     - iksemel
     - fping
 
 - name: Ensure zabbix server is installed.
-  yum:
-    name: "{{ item }}"
-    state: installed
-    enablerepo: "{{ php_enablerepo }},{{ mysql_enablerepo }},zabbix"
+  yum: name={{ item }} enablerepo="{{ php_enablerepo }},{{ mysql_enablerepo }},zabbix"
   with_items:
     - zabbix-server-mysql
     - zabbix-web-mysql
@@ -48,21 +37,11 @@
   when: zabbix_database_tables.stdout | int == 0
 
 - name: Zabbix document root.
-  file:
-    path: /etc/zabbix/web
-    state: directory
-    owner: "{{ zabbix_server_web_user }}"
-    group: "{{ zabbix_server_web_group }}"
-    mode: 00755
+  file: path=/etc/zabbix/web state=directory owner={{ zabbix_server_web_user }} group={{ zabbix_server_web_group }} mode=0755
   changed_when: False
 
 - name: Link to web root directory.
-  file:
-    src: /usr/share/zabbix
-    dest: /var/www/zabbix
-    owner: "{{ zabbix_server_web_user }}"
-    group: "{{ zabbix_server_web_group }}"
-    state: link
+  file: src=/usr/share/zabbix dest=/var/www/zabbix owner={{ zabbix_server_web_user }} group={{ zabbix_server_web_group }} state=link
 
 # configure
 - name: Copy zabbix server configuration in place.
@@ -89,4 +68,4 @@
 
 # notify scripts
 - name: Copy slack notification script in place.
-  template: src=alart_slack.sh.j2 dest={{ zabbix_server_AlertScriptsPath }}/slack.sh mode=00755
+  template: src=alart_slack.sh.j2 dest={{ zabbix_server_AlertScriptsPath }}/slack.sh mode=0755
