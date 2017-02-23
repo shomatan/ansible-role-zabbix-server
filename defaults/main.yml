@@ -10,6 +10,8 @@ zabbix_server_db_name: zabbix
 zabbix_server_db_user: zabbix
 zabbix_server_db_pass: zabbix
 
+# zabbix_server.conf
+zabbix_server_StartIPMIPollers: 0
 zabbix_server_AlertScriptsPath: /usr/lib/zabbix/alertscripts
 
 # slack

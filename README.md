@@ -15,6 +15,8 @@ None.
 |zabbix_server_db_name|String|Database name.|zabbix|
 |zabbix_server_db_user|String|Database user.|zabbix|
 |zabbix_server_db_pass|String|Database password.|zabbix|
+|zabbix_server_StartIPMIPollers||0|
+|zabbix_server_AlertScriptsPath|String||/usr/lib/zabbix/alertscripts|
 |zabbix_server_slack_url|String|||
 |zabbix_server_slack_username|String|||
 
