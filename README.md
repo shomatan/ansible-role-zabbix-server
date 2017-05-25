@@ -1,40 +1,38 @@
-# ansible-zabbix-server
-Installs and configure Zabbix server.
+Role Name
+=========
 
-### Requirements
-None.
+A brief description of the role goes here.
 
-### Role variables
-|Key|Type|Description|Default|
-|:--|:---|:----------|:------|
-|zabbix_server_version|String|Install version.|3.2|
-|zabbix_server_web_user|String|Web server user.|nginx|
-|zabbix_server_web_group|String|Web server group.|nginx|
-|zabbix_server_ListenPort|Integer|Listen port number.|10051|
-|zabbix_server_db_host|String|Database host.|localhost|
-|zabbix_server_db_name|String|Database name.|zabbix|
-|zabbix_server_db_user|String|Database user.|zabbix|
-|zabbix_server_db_pass|String|Database password.|zabbix|
-|zabbix_server_StartIPMIPollers||0|
-|zabbix_server_AlertScriptsPath|String||/usr/lib/zabbix/alertscripts|
-|zabbix_server_slack_url|String|||
-|zabbix_server_slack_username|String|||
+Requirements
+------------
 
-## Dependencies
-+ [php](https://github.com/shomatan/ansible-php.git)
-+ [mysql](https://github.com/shomatan/ansible-mysql.git)
+Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
 
-## Example playbook
-+ [firewalld](https://github.com/shomatan/ansible-firewalld.git)
+Role Variables
+--------------
 
-```yaml
-- hosts: all
-  roles:
-    - { role: firewalld }
-    - { role: zabbix-server }
-  vars:
-    zabbix_server_slack_url: "https://hooks.slack.com/services/xxxxx/yyyyy/zzzzz"
-    zabbix_server_slack_username: "notify-user"    
-  tasks:  
-    - firewalld: service=http permanent=true state=enabled immediate=true
-```
+A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+
+Dependencies
+------------
+
+A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+
+Example Playbook
+----------------
+
+Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+
+    - hosts: servers
+      roles:
+         - { role: username.rolename, x: 42 }
+
+License
+-------
+
+BSD
+
+Author Information
+------------------
+
+An optional section for the role authors to include contact information, or a website (HTML is not allowed).
