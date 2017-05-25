@@ -1,16 +1,20 @@
 ---
 # install
 - name: Enable zabbix repo.
-  template: src=zabbix.repo.j2 dest=/etc/yum.repos.d/zabbix.repo
+  template: 
+    src: zabbix.repo.j2
+    dest: /etc/yum.repos.d/zabbix.repo
 
 - name: Ensure zabbix utils are installed.
-  yum: name={{ item }} enablerepo=epel
-  with_items:
-    - iksemel
-    - fping
+  yum: 
+    name: "{{ item }}"
+    enablerepo: epel
+  with_items: [ iksemel, fping ]
 
 - name: Ensure zabbix server is installed.
-  yum: name={{ item }} enablerepo="{{ php_enablerepo }},{{ mysql_enablerepo }},zabbix"
+  yum:
+    name: "{{ item }}"
+    enablerepo: "{{ php_enablerepo }},{{ mysql_enablerepo }},zabbix"
   with_items:
     - zabbix-server-mysql
     - zabbix-web-mysql
@@ -18,7 +22,9 @@
 
 # database
 - name: Create a new database
-  mysql_db: name={{ zabbix_server_db_name }} state=present
+  mysql_db:
+    name: "{{ zabbix_server_db_name }}"
+    state: present
 
 - name: Create database user and 'WITH GRANT OPTION'
   mysql_user:
@@ -37,11 +43,21 @@
   when: zabbix_database_tables.stdout | int == 0
 
 - name: Zabbix document root.
-  file: path=/etc/zabbix/web state=directory owner={{ zabbix_server_web_user }} group={{ zabbix_server_web_group }} mode=0755
+  file:
+    path: /etc/zabbix/web
+    owner: "{{ zabbix_server_web_user }}"
+    group: "{{ zabbix_server_web_group }}"
+    mode: 0755
+    state: directory   
   changed_when: False
 
 - name: Link to web root directory.
-  file: src=/usr/share/zabbix dest=/var/www/zabbix owner={{ zabbix_server_web_user }} group={{ zabbix_server_web_group }} state=link
+  file:
+    src: /usr/share/zabbix
+    dest: /var/www/zabbix
+    owner: "{{ zabbix_server_web_user }}"
+    group: "{{ zabbix_server_web_group }}"
+    state: link
 
 # configure
 - name: Copy zabbix server configuration in place.
@@ -68,4 +84,7 @@
 
 # notify scripts
 - name: Copy slack notification script in place.
-  template: src=alart_slack.sh.j2 dest={{ zabbix_server_AlertScriptsPath }}/slack.sh mode=0755
+  template:
+    src: alart_slack.sh.j2
+    dest: "{{ zabbix_server_AlertScriptsPath }}/slack.sh"
+    mode: 0755
