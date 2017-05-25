@@ -35,6 +35,7 @@ Role Variables
 Dependencies
 ------------
 
+- shomatan.repo-epel
 - shomatan.php-fpm (not docker)
 - shomatan.mariadb (not docker)
 
