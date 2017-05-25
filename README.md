@@ -1,31 +1,49 @@
-Role Name
+Ansible role: Zabbix server
 =========
 
-A brief description of the role goes here.
+Installs and configures Zabbix server.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+None.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+    zabbix_server_version: "3.2"
+
+    zabbix_server_web_user: nginx
+    zabbix_server_web_group: nginx
+
+    zabbix_server_ListenPort: 10051
+
+    # database
+    zabbix_server_db_host: localhost
+    zabbix_server_db_name: zabbix
+    zabbix_server_db_user: zabbix
+    zabbix_server_db_pass: zabbix
+
+    # zabbix_server.conf
+    zabbix_server_StartIPMIPollers: 0
+    zabbix_server_AlertScriptsPath: /usr/lib/zabbix/alertscripts
+
+    # slack
+    zabbix_server_slack_url: ""
+    zabbix_server_slack_username: ""
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+- shomatan.php-fpm (not docker)
+- shomatan.mariadb (not docker)
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+         - { role: shomatan.zabbix-server }
 
 License
 -------
@@ -35,4 +53,4 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Shoma Nishitateno
