@@ -1,0 +1,21 @@
+---
+- name: Create a new database
+  mysql_db:
+    name: "{{ zabbix_server_db_name }}"
+    state: present
+
+- name: Create database user and 'WITH GRANT OPTION'
+  mysql_user:
+    name: "{{ zabbix_server_db_user }}"
+    password: "{{ zabbix_server_db_pass }}"
+    priv: "{{ zabbix_server_db_name }}.*:ALL,GRANT"
+    state: present
+
+- name: Importing schema file
+  shell: mysql -u {{ zabbix_server_db_user }} -p{{ zabbix_server_db_pass }} {{ zabbix_server_db_name }} -e "show tables;" | wc -l
+  register: zabbix_database_tables
+  changed_when: False
+- shell: >
+    zcat /usr/share/doc/zabbix-server-mysql-*/create.sql.gz |
+      mysql -u{{ zabbix_server_db_user }} -p{{ zabbix_server_db_pass }} {{ zabbix_server_db_name }}
+  when: zabbix_database_tables.stdout | int == 0
