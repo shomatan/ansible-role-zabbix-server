@@ -10,8 +10,5 @@ galaxy_info:
   galaxy_tags: []
 
 dependencies: 
-  - src: shomatan.repo-epel
   - src: shomatan.php-fpm
-    when: "ansible_connection != 'docker'"
   - src: shomatan.mariadb
-    when: "ansible_connection != 'docker'"

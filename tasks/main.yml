@@ -14,7 +14,7 @@
 - name: Ensure zabbix server is installed.
   yum:
     name: "{{ item }}"
-    enablerepo: "{{ php_enablerepo }},{{ mysql_enablerepo }},zabbix"
+    enablerepo: "{{ php_enablerepo }},{{ mariadb_enablerepo }},zabbix"
   with_items:
     - zabbix-server-mysql
     - zabbix-web-mysql
@@ -72,8 +72,3 @@
     src: alart_slack.sh.j2
     dest: "{{ zabbix_server_AlertScriptsPath }}/slack.sh"
     mode: 0755
-
-# clean
-- name: Purge yum cache.
-  command: yum clean all
-  when: ansible_connection == 'docker'
