@@ -5,6 +5,7 @@ zabbix_server_web_user: nginx
 zabbix_server_web_group: nginx
 
 zabbix_server_ListenPort: 10051
+zabbix_server_LogType: file
 
 # database
 zabbix_server_db_host: localhost
